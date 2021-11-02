@@ -2,7 +2,7 @@
 var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
-function writePassword() {
+let writePassword = () => {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
 
@@ -12,3 +12,78 @@ function writePassword() {
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
+
+let numbers = [0, 1 , 2, 3 , 4, 5, 6, 7, 8, 9];
+let upperChars = ['A', 'B', 'C', 'D', 'E', 'F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
+const lowerChars = upperChars.map(letters => letters.toLowerCase());
+let special = ['!', '@', '#', '%', '^', '$','£','&','+','=','-','.','{','}'];
+
+let randomNumber = (anyArray) => {
+  random = Math.floor(Math.random() * anyArray.length);
+  return random;
+};
+
+
+let generatePassword = () => {
+
+let selectionArray = [];
+
+let criteria = {
+  special: true,
+  numeric: true,
+  lowercase: true,
+  uppercase: true,
+};
+
+let characters = prompt("How many characters would you like your password to contain?");
+
+if (confirm("Click OK to confirm including special characters")) {
+     criteria.special = true;
+     special.forEach((element) => {
+      selectionArray.push(element);
+      })
+    } else {
+  criteria.special = false;
+};
+
+if (confirm("Click OK to confirm including numeric characters") == true) {
+  criteria.numeric = true;
+  numbers.forEach((element) => {
+    selectionArray.push(element);
+    })
+} else {
+  criteria.numeric = false;
+};
+
+if (confirm("Click OK to confirm including lowercase characters") == true) {
+  criteria.lowercase = true;
+  lowerChars.forEach((element) => {
+    selectionArray.push(element);
+    })
+} else {
+  criteria.lowercase = false;
+};
+
+if (confirm("Click OK to confirm including uppercase characters") == true) {
+  criteria.uppercase = true;
+  upperChars.forEach((element) => {
+    selectionArray.push(element);
+    })
+} else {
+  criteria.uppercase = false;
+};
+
+console.log(selectionArray);
+console.log(randomNumber(selectionArray));
+
+let password = [];
+  
+for(var i = 0; i < characters; i++) {
+  password.push(selectionArray[randomNumber(selectionArray)]);   
+};
+
+return password.join('');
+
+}
+
+
