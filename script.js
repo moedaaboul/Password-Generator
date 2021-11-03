@@ -37,6 +37,14 @@ let criteria = {
 
 let characters = prompt("How many characters would you like your password to contain?");
 
+if (characters < 8 ) {
+  alert('Password is too short.');
+  return null;
+} else if (characters > 128) {
+  alert('Password is too long!');
+  return null;
+};
+
 if (confirm("Click OK to confirm including special characters")) {
      criteria.special = true;
      special.forEach((element) => {
@@ -73,8 +81,6 @@ if (confirm("Click OK to confirm including uppercase characters") == true) {
   criteria.uppercase = false;
 };
 
-console.log(selectionArray);
-console.log(randomNumber(selectionArray));
 
 let password = [];
   
