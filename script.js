@@ -63,10 +63,10 @@ let criteria = {
   special: false,
   numeric: false,
   lowercase: false,
-  uppercase: false,
+  uppercase: false
 };
 
-// enables character type selection via a prompt
+// enables number of password characters input via a prompt
 let characters = prompt("How many characters would you like your password to contain?");
 
 // enables alert prompts for too short or too long passwords
@@ -102,9 +102,16 @@ if (confirm("Click OK to confirm including uppercase characters") == true) {
   pushToSelectedChars(upperChars, selectionArray);
 };
 
+// Creates alert and terminates upon no character type selection
+if(!Object.values(criteria).includes(true)) {
+  alert('At least one character types needs to be selected.');
+  return null;
+}
+
 // creates an empty array for final password output
 let password = [];
-  
+
+// Finally random number is called from the randomNumber function and pushed to the password array depending on number of password selectors through the initial prompt
 for(var i = 0; i < characters; i++) {
   password.push(selectionArray[randomNumber(selectionArray)]);   
 };
