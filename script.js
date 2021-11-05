@@ -23,6 +23,10 @@ let randomNumber = (anyArray) => {
   return random;
 };
 
+const pushToSelectedChars = (char, selectionArray) => char.forEach((element) => {
+  selectionArray.push(element);
+  });
+
 
 let generatePassword = () => {
 
@@ -47,36 +51,28 @@ if (characters < 8 ) {
 
 if (confirm("Click OK to confirm including special characters")) {
      criteria.special = true;
-     special.forEach((element) => {
-      selectionArray.push(element);
-      })
+     pushToSelectedChars(special, selectionArray);
     } else {
   criteria.special = false;
 };
 
 if (confirm("Click OK to confirm including numeric characters") == true) {
   criteria.numeric = true;
-  numbers.forEach((element) => {
-    selectionArray.push(element);
-    })
+  pushToSelectedChars(numbers, selectionArray);
 } else {
   criteria.numeric = false;
 };
 
 if (confirm("Click OK to confirm including lowercase characters") == true) {
   criteria.lowercase = true;
-  lowerChars.forEach((element) => {
-    selectionArray.push(element);
-    })
+  pushToSelectedChars(lowerChars, selectionArray);
 } else {
   criteria.lowercase = false;
 };
 
 if (confirm("Click OK to confirm including uppercase characters") == true) {
   criteria.uppercase = true;
-  upperChars.forEach((element) => {
-    selectionArray.push(element);
-    })
+  pushToSelectedChars(upperChars, selectionArray);
 } else {
   criteria.uppercase = false;
 };
