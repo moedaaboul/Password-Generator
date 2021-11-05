@@ -18,7 +18,7 @@ let numbers = [];
 let upperChars = [];
 let lowerChars = [];
 
-// Global function added to create array from given CharCode start and end
+// Global function added to create array from given CharCode start and end codes
 let GenerateArrayfromCharCode = (startCharCode, endCharCode, ArrayType) => {
 for (let i = startCharCode; i <= endCharCode; i++) {
  ArrayType.push(String.fromCharCode(i))
@@ -56,11 +56,14 @@ let generatePassword = () => {
 
 let selectionArray = [];
 
+// Create criteria object to store whether any of the 4 character types has been selected
+// Set values to false (i.e. that no character type is selected)
+
 let criteria = {
-  special: true,
-  numeric: true,
-  lowercase: true,
-  uppercase: true,
+  special: false,
+  numeric: false,
+  lowercase: false,
+  uppercase: false,
 };
 
 // enables character type selection via a prompt
@@ -79,32 +82,24 @@ if (characters < 8 ) {
 if (confirm("Click OK to confirm including special characters")) {
      criteria.special = true;
      pushToSelectedChars(special, selectionArray);
-    } else {
-  criteria.special = false;
-};
+    };
 
 // prompt message for number character selection 
 if (confirm("Click OK to confirm including numeric characters") == true) {
   criteria.numeric = true;
   pushToSelectedChars(numbers, selectionArray);
-} else {
-  criteria.numeric = false;
 };
 
 // prompt message for lower characters selection 
 if (confirm("Click OK to confirm including lowercase characters") == true) {
   criteria.lowercase = true;
   pushToSelectedChars(lowerChars, selectionArray);
-} else {
-  criteria.lowercase = false;
 };
 
 // prompt message for caps characters selection 
 if (confirm("Click OK to confirm including uppercase characters") == true) {
   criteria.uppercase = true;
   pushToSelectedChars(upperChars, selectionArray);
-} else {
-  criteria.uppercase = false;
 };
 
 // creates an empty array for final password output
