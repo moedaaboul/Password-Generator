@@ -123,6 +123,15 @@ let generatePassword = () => {
     password.push(selectionArray[randomNumber(selectionArray)]);
   }
 
+  // Finally shuffle array due to initial pushed values
+  function shuffle(arr) {
+    arr.sort(() => Math.random() - 0.5);
+  }
+
+  // Call shuffle function on password array
+  shuffle(password);
+  console.log(password);
+
   console.log(password.some((v) => upperChars.includes(v)));
   console.log(password.some((v) => lowerChars.includes(v)));
   console.log(password.some((v) => special.includes(v)));
