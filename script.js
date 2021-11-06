@@ -117,27 +117,18 @@ let generatePassword = () => {
   }
 
   // Adjust characters to take on remaining characters needed
+  selections = password.length;
   characters -= password.length;
 
   for (var i = 0; i < characters; i++) {
     password.push(selectionArray[randomNumber(selectionArray)]);
   }
 
-  // Finally shuffle array due to initial pushed values
-  function shuffle(arr) {
-    arr.sort(() => Math.random() - 0.5);
+  // Finally shuffle initial single pushed values as other indices have already been randomized
+  for (var i = 0; i <= selections - 1; i++) {
+    randomIndex = randomNumber(password);
+    [password[i], password[randomIndex]] = [password[randomIndex], password[i]];
   }
-
-  // Call shuffle function on password array
-  shuffle(password);
-  console.log(password);
-
-  console.log(password.some((v) => upperChars.includes(v)));
-  console.log(password.some((v) => lowerChars.includes(v)));
-  console.log(password.some((v) => special.includes(v)));
-  console.log(password.some((v) => numbers.includes(v)));
-
-  // shuffle PENDING
 
   return password.join("");
 };
