@@ -70,18 +70,6 @@ const pushToSelectedChars = (char, selectionArray) =>
 let generatePassword = () => {
   let selectionArray = [];
 
-  // Create criteria object to store whether any of the 4 character types has been selected
-  // Set values to false (i.e. that no character type is selected)
-
-  // PENDING Replace criteria.uppercase with array emptiness checker
-
-  let criteria = {
-    special: false,
-    numeric: false,
-    lowercase: false,
-    uppercase: false,
-  };
-
   // enables number of password characters input via a prompt
   let characters = prompt(
     "How many characters would you like your password to contain?"
@@ -100,39 +88,38 @@ let generatePassword = () => {
 
   // prompt message for special character selection
   if (confirm("Click OK to confirm including special characters")) {
-    criteria.special = true;
     pushToSelectedChars(special, selectionArray);
     password.push(special[randomNumber(special)]);
   }
 
   // prompt message for number character selection
   if (confirm("Click OK to confirm including numeric characters")) {
-    criteria.numeric = true;
     pushToSelectedChars(numbers, selectionArray);
     password.push(numbers[randomNumber(numbers)]);
   }
 
   // prompt message for lower characters selection
   if (confirm("Click OK to confirm including lowercase characters")) {
-    criteria.lowercase = true;
     pushToSelectedChars(lowerChars, selectionArray);
     password.push(lowerChars[randomNumber(lowerChars)]);
   }
 
   // prompt message for caps characters selection
   if (confirm("Click OK to confirm including uppercase characters")) {
-    criteria.uppercase = true;
     pushToSelectedChars(upperChars, selectionArray);
     password.push(upperChars[randomNumber(upperChars)]);
   }
 
   // Creates alert and terminates upon no character type selection
-  if (!Object.values(criteria).includes(true)) {
+  if (selectionArray.length === 0) {
     alert("At least one character types needs to be selected.");
     return null;
   }
 
-  for (var i = 0; i < characters - password.length; i++) {
+  // Adjust characters to take on remaining characters needed
+  characters -= password.length;
+
+  for (var i = 0; i < characters; i++) {
     password.push(selectionArray[randomNumber(selectionArray)]);
   }
 
