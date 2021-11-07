@@ -7,7 +7,7 @@
 
 - [General Info](#general-information)
 - [Technologies Used](#technologies-used)
-- [Mock-up Appearance](#mock-up-appearance)
+- [Appearance](#appearance)
 - [Setup](#setup)
 - [Project Status](#project-status)
 - [Room for Improvement](#room-for-improvement)
@@ -32,9 +32,9 @@ Focus of this project is on vanilla JavaScript.
 
 Starter code was provided for both the HTML and CSS.
 
-## Mock-up Appearance
+## Appearance
 
-The following image is a mock-up piece which depicts the functionality expected of the webpage:
+The following image depicts the functionality expected of the webpage:
 
 ![The password generator includes a generator button and and a text box for displaying the password upon click.](./images/demo.png)
 
