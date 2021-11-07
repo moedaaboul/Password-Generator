@@ -1,4 +1,4 @@
-// Assignment Code
+// Assign variable to the generate button
 var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
@@ -18,22 +18,22 @@ let upperChars = [];
 let lowerChars = [];
 
 // Global function added to create array from given CharCode start and end codes
-let GenerateArrayfromCharCode = (startCharCode, endCharCode, ArrayType) => {
+let PushFromCharCodes = (startCharCode, endCharCode, ArrayType) => {
   for (let i = startCharCode; i <= endCharCode; i++) {
     ArrayType.push(String.fromCharCode(i));
   }
 };
 
 // Create numbers array from 0 to 9
-GenerateArrayfromCharCode(48, 57, numbers);
+PushFromCharCodes(48, 57, numbers);
 // Conversely could replace with: let numbers = [0, 1 , 2, 3 , 4, 5, 6, 7, 8, 9];
 
 // Create upper characters array from A to Z
-GenerateArrayfromCharCode(65, 90, upperChars);
+PushFromCharCodes(65, 90, upperChars);
 // Conversely could replace with: let upperChars = ['A', 'B', 'C', 'D', 'E', 'F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
 
 // Create lower characters array from a to z
-GenerateArrayfromCharCode(97, 122, lowerChars);
+PushFromCharCodes(97, 122, lowerChars);
 // Conversely could replace with: const lowerChars = upperChars.map(letters => letters.toLowerCase());
 
 // Create special character array
@@ -60,11 +60,16 @@ let randomNumber = (anyArray) => {
   return random;
 };
 
-// Global function to push selected character types to the selectionArray
-const pushToSelectedChars = (char, selectionArray) =>
+// Global function to push ALL selected character types to the selectionArray
+const pushAllToSelectedArray = (char, selectionArray) =>
   char.forEach((element) => {
     selectionArray.push(element);
   });
+
+// Global function to push SINGLE random selections from any defined Array Character Type (Also takes any array)
+const pushRandomToPasswordArray = (charType, passwordArray) => {
+  passwordArray.push(charType[randomNumber(charType)]);
+};
 
 // Main function to generate password
 let generatePassword = () => {
@@ -88,26 +93,26 @@ let generatePassword = () => {
 
   // prompt message for special character selection
   if (confirm("Click OK to confirm including special characters")) {
-    pushToSelectedChars(special, selectionArray);
-    password.push(special[randomNumber(special)]);
+    pushAllToSelectedArray(special, selectionArray);
+    pushRandomToPasswordArray(special, password);
   }
 
   // prompt message for number character selection
   if (confirm("Click OK to confirm including numeric characters")) {
-    pushToSelectedChars(numbers, selectionArray);
-    password.push(numbers[randomNumber(numbers)]);
+    pushAllToSelectedArray(numbers, selectionArray);
+    pushRandomToPasswordArray(numbers, password);
   }
 
   // prompt message for lower characters selection
   if (confirm("Click OK to confirm including lowercase characters")) {
-    pushToSelectedChars(lowerChars, selectionArray);
-    password.push(lowerChars[randomNumber(lowerChars)]);
+    pushAllToSelectedArray(lowerChars, selectionArray);
+    pushRandomToPasswordArray(lowerChars, password);
   }
 
   // prompt message for caps characters selection
   if (confirm("Click OK to confirm including uppercase characters")) {
-    pushToSelectedChars(upperChars, selectionArray);
-    password.push(upperChars[randomNumber(upperChars)]);
+    pushAllToSelectedArray(upperChars, selectionArray);
+    pushRandomToPasswordArray(upperChars, password);
   }
 
   // Creates alert and terminates upon no character type selection
@@ -120,15 +125,17 @@ let generatePassword = () => {
   selections = password.length;
   characters -= password.length;
 
+  //Push random selection to meet initial character selection length
   for (var i = 0; i < characters; i++) {
-    password.push(selectionArray[randomNumber(selectionArray)]);
+    pushRandomToPasswordArray(selectionArray, password);
   }
 
-  // Finally shuffle initial single pushed values as other indices have already been randomized
+  // Finally shuffle initial single pushed values only as other indices have already been randomized
   for (var i = 0; i <= selections - 1; i++) {
     randomIndex = randomNumber(password);
     [password[i], password[randomIndex]] = [password[randomIndex], password[i]];
   }
 
+  // Use join method to convert the Password Array to a string and return
   return password.join("");
 };
