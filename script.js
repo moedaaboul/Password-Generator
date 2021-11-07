@@ -61,10 +61,11 @@ let randomNumber = (anyArray) => {
 };
 
 // Global function to push ALL selected character types to the selectionArray
-const pushAllToSelectedArray = (char, selectionArray) =>
+const pushAllToSelectedArray = (char, selectionArray) => {
   char.forEach((element) => {
     selectionArray.push(element);
   });
+};
 
 // Global function to push SINGLE random selections from any defined Array Character Type (Also takes any array)
 const pushRandomToPasswordArray = (charType, passwordArray) => {
@@ -122,8 +123,10 @@ let generatePassword = () => {
     return null;
   }
 
+  // Store number of selections for last reshuffling step
+  var selections = password.length;
+
   // Adjust characters to take on remaining characters needed
-  selections = password.length;
   characters -= password.length;
 
   //Push random selection to meet initial character selection length
