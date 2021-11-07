@@ -16,7 +16,7 @@
 
 ## General Information
 
-Goal is to create a password generator using vanilla javascript that has the following functionality:
+Goal is to create a password generator using JavaScript that has the following functionality:
 
 - It generates upon clicking a button to generate
 - A prompt for the length of the password
@@ -28,13 +28,13 @@ Goal is to create a password generator using vanilla javascript that has the fol
 
 ## Technologies used
 
-Focus of this project is on vanilla JavaScript.
-
-Starter code was provided for both the HTML and CSS.
+- HTML
+- CSS
+- JavaScript
 
 ## Appearance
 
-The following image depicts the functionality expected of the webpage:
+The following image depicts the functionality of the webpage:
 
 ![The password generator includes a generator button and and a text box for displaying the password upon click.](./images/demo.png)
 
@@ -49,7 +49,7 @@ Project is: _complete_.
 
 ## Room for Improvement
 
-An add-in to secure store generated passwords by usage purpose would be an interesting additional feature.
+An add-in to secure store generated passwords by usage purposes would be an interesting additional feature.
 
 ## Contact
 
