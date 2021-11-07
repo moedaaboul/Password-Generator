@@ -135,3 +135,11 @@ button[disabled] {
     font-size: 0.8rem;
   }
 }
+
+/*Enhances responsiveness to smaller screens */
+
+@media (max-width: 367px) {
+  #password {
+    overflow: scroll;
+  }
+}
