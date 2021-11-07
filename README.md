@@ -36,7 +36,7 @@ Starter code was provided for both the HTML and CSS.
 
 The following gif is the mock-up piece which depicts the functionality and output expected of the webpage:
 
-![The password generator includes a generator button and and a text box for displaying the password upon click.](./demo.png)
+![The password generator includes a generator button and and a text box for displaying the password upon click.](.images/demo.png)
 
 ## Setup
 
