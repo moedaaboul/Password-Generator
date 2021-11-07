@@ -89,6 +89,7 @@ let generatePassword = () => {
     return null;
   }
 
+  // create empty password array
   let password = [];
 
   // prompt message for special character selection
