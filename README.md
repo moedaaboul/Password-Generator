@@ -1,7 +1,7 @@
 # Password Generator
 
 > Password Generator
-> Live demo [_here_](https://moedaaboul.github.io/Password-Generator/).
+> Live demo [_here_](https://moedaaboul.github.io/password-generator/).
 
 ## Table of Contents
 
