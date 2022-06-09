@@ -9,28 +9,29 @@
 - [Technologies Used](#technologies-used)
 - [Appearance](#appearance)
 - [Setup](#setup)
+- [Getting Started](#getting-started)
 - [Project Status](#project-status)
-- [Room for Improvement](#room-for-improvement)
 - [Contact](#contact)
 - [License](#license)
 
 ## General Information
 
-Goal is to create a password generator using JavaScript that has the following functionality:
+This is a password generator that I originally built using JavaScript, which I later refactored to TypeScript.
 
-- It generates upon clicking a button to generate
-- A prompt for the length of the password
-- Length should be at least 8 characters and no more than 128 characters
-- A series of prompts for password criteria to include whether or not to include lowercase, uppercase, numeric and/or special characters
-- Input should be validated and at least one character type should be selected
-- Password generated should match the selected criteria
-- Password to be written to the page
+This web application has the following functionality:
+
+- A prompt is generated upon clicking the `Generate Password` button for the length of the password.
+- Length validation check enabled to ensure at least 8 characters and no more than 128 characters. User is presented with a prompt message that password is either too short or too long.
+- A series of prompts asking for password criteria to include whether or not to include lowercase, uppercase, numeric and/or special characters.
+- Input are validated and at least one character type should be selected by the user.
+- Password is finally presented to the page inside the `textarea`
 
 ## Technologies used
 
 - HTML
 - CSS
 - JavaScript
+- TypeScript
 
 ## Appearance
 
@@ -43,13 +44,19 @@ The following image depicts the functionality of the webpage:
 - Text editor (VS Code recommended)
 - An Internet browser (Google Chrome recommended)
 
+## Getting Started
+
+To make changes, modify `TypeScript` files located inside of the `src` directory.
+
+To compile file to JavaScript, run the following command in your terminal:
+
+```
+npx tsc
+```
+
 ## Project Status
 
 Project is: _complete_.
-
-## Room for Improvement
-
-An add-in to secure store generated passwords by usage purposes would be an interesting additional feature.
 
 ## Contact
 

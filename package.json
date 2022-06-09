@@ -1,0 +1,22 @@
+{
+  "name": "password-generator",
+  "version": "1.0.0",
+  "description": "> Password Generator\r > Live demo [_here_](https://moedaaboul.github.io/Password-Generator/).",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/moedaaboul/password-generator.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/moedaaboul/Password-Generator/issues"
+  },
+  "homepage": "https://github.com/moedaaboul/Password-Generator#readme",
+  "devDependencies": {
+    "typescript": "^4.7.3"
+  }
+}
