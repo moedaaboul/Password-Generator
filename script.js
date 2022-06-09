@@ -48,13 +48,19 @@ var pushRandomToPasswordArray = function (charType, passwordArray) {
 var generatePassword = function () {
     var _a;
     var selectionArray = [];
-    var characters = prompt("How many characters would you like your password to contain?");
-    if (characters < 8) {
+    var selectedPasswordLength = prompt("How many characters would you like your password to contain?");
+    var isNumber = parseInt(selectedPasswordLength) == selectedPasswordLength;
+    console.log(typeof selectedPasswordLength);
+    if (selectedPasswordLength < 8) {
         alert("Password is too short.");
         return null;
     }
-    else if (characters > 128) {
+    else if (selectedPasswordLength > 128) {
         alert("Password is too long!");
+        return null;
+    }
+    else if (!isNumber) {
+        alert("A number should be selected!");
         return null;
     }
     var password = [];
@@ -79,8 +85,8 @@ var generatePassword = function () {
         return null;
     }
     var selections = password.length;
-    characters -= password.length;
-    for (var i = 0; i < characters; i++) {
+    selectedPasswordLength -= password.length;
+    for (var i = 0; i < selectedPasswordLength; i++) {
         pushRandomToPasswordArray(selectionArray, password);
     }
     for (var i = 0; i <= selections - 1; i++) {

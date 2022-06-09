@@ -73,16 +73,21 @@ const generatePassword = () : string | null => {
   let selectionArray: Array<any> = [];
 
   // enables number of password characters input via a prompt
-  let characters: any = prompt(
+  let selectedPasswordLength: any = prompt(
     "How many characters would you like your password to contain?"
   );
 
+  var isNumber: boolean = parseInt(selectedPasswordLength) == selectedPasswordLength; 
+
   // enables alert prompts for too short or too long passwords
-  if (characters < 8) {
+  if (selectedPasswordLength < 8) {
     alert("Password is too short.");
     return null;
-  } else if (characters > 128) {
+  } else if (selectedPasswordLength > 128) {
     alert("Password is too long!");
+    return null;
+  } else if (!isNumber){
+    alert("A number should be selected!");
     return null;
   }
 
@@ -123,10 +128,10 @@ const generatePassword = () : string | null => {
   const selections = password.length;
 
   // Adjust characters to take on remaining characters needed
-  characters -= password.length;
+  selectedPasswordLength -= password.length;
 
   //Push random selection to meet initial character selection length
-  for (var i = 0; i < characters; i++) {
+  for (var i = 0; i < selectedPasswordLength; i++) {
     pushRandomToPasswordArray(selectionArray, password);
   }
 
