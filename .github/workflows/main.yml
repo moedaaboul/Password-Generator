@@ -13,14 +13,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # First you need to install a chromium browser in your runner
-      - name: Setup Chrome
-        # You may pin to the exact commit or the version.
-        # uses: browser-actions/setup-chrome@4fa655aad48f56911cad16db9252399a9e592848
-        uses: browser-actions/setup-chrome@v0.0.0
-        with:
-          # The Chromium version to install and use.
-          chromium-version: # optional
+      # https://github.com/browser-actions/setup-chrome
+      - uses: browser-actions/setup-chrome@latest
+      - run: chrome --version
       # You fetch the current ref
       - uses: actions/checkout@v2
 
