@@ -14,8 +14,8 @@ jobs:
 
     steps:
       # https://github.com/browser-actions/setup-chrome
-      - uses: browser-actions/setup-chrome@latest
-      - run: chrome --version
+      # - uses: browser-actions/setup-chrome@latest
+      # - run: chrome --version
       # You fetch the current ref
       - uses: actions/checkout@v2
 
