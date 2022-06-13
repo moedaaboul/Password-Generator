@@ -1,6 +1,7 @@
 require('chromedriver');
 const { By, Builder, until } = require('selenium-webdriver');
 const assert = require('assert');
+const { expect } = require('chai');
 var should = require('chai').should();
 // describe block
 
@@ -85,6 +86,238 @@ describe('More than 128 password characters have been entered', function () {
 
     // assert using chai should
     alertText.should.equal('Password is too long!');
+    await driver.quit();
+  });
+});
+
+describe('Numeric characters only selected to generate password', function () {
+  var onlyNumbers = /^[0-9]+$/;
+
+  it('Should generate a password with only numeric characters', async function () {
+    let driver = await new Builder().forBrowser('chrome').build();
+    await driver.get('http://127.0.0.1:5500/index.html');
+    await driver.findElement(By.id('generate')).click();
+    await driver.wait(until.alertIsPresent());
+    let alert = await driver.switchTo().alert();
+    await alert.sendKeys('10');
+    await alert.accept();
+    let specialCharactersSelection = await driver.switchTo().alert();
+    await specialCharactersSelection.dismiss();
+    let numericCharactersSelection = await driver.switchTo().alert();
+    await numericCharactersSelection.accept();
+    let lowerCaseCharactersSelection = await driver.switchTo().alert();
+    await lowerCaseCharactersSelection.dismiss();
+    let upperCaseCharactersSelection = await driver.switchTo().alert();
+    await upperCaseCharactersSelection.dismiss();
+    let password = await driver
+      .findElement(By.id('password'))
+      .getAttribute('value');
+    console.log('password: ', password);
+    password = parseInt(password);
+    expect(parseInt(password)).to.match(onlyNumbers);
+    // assert using chai should
+    // alertText.should.equal('Password is too long!');
+    await driver.quit();
+  });
+});
+
+describe('Only Letter characters selected to generate password', function () {
+  var onlyLetters = /^[A-Za-z]+$/;
+
+  it('Should generate a password with only letter characters', async function () {
+    let driver = await new Builder().forBrowser('chrome').build();
+    await driver.get('http://127.0.0.1:5500/index.html');
+    await driver.findElement(By.id('generate')).click();
+    await driver.wait(until.alertIsPresent());
+    let alert = await driver.switchTo().alert();
+    await alert.sendKeys('10');
+    await alert.accept();
+    let specialCharactersSelection = await driver.switchTo().alert();
+    await specialCharactersSelection.dismiss();
+    let numericCharactersSelection = await driver.switchTo().alert();
+    await numericCharactersSelection.dismiss();
+    let lowerCaseCharactersSelection = await driver.switchTo().alert();
+    await lowerCaseCharactersSelection.accept();
+    let upperCaseCharactersSelection = await driver.switchTo().alert();
+    await upperCaseCharactersSelection.accept();
+    let password = await driver
+      .findElement(By.id('password'))
+      .getAttribute('value');
+    console.log('password: ', password);
+    expect(password).to.match(onlyLetters);
+    // assert using chai should
+    // alertText.should.equal('Password is too long!');
+    await driver.quit();
+  });
+});
+
+describe('Only Mix of Letters and Numeric characters selected to generate password', function () {
+  var onlyLettersAndNumeric = /^[A-Za-z0-9]+$/;
+
+  it('Should generate a password with only letters and numeric characters', async function () {
+    let driver = await new Builder().forBrowser('chrome').build();
+    await driver.get('http://127.0.0.1:5500/index.html');
+    await driver.findElement(By.id('generate')).click();
+    await driver.wait(until.alertIsPresent());
+    let alert = await driver.switchTo().alert();
+    await alert.sendKeys('10');
+    await alert.accept();
+    let specialCharactersSelection = await driver.switchTo().alert();
+    await specialCharactersSelection.dismiss();
+    let numericCharactersSelection = await driver.switchTo().alert();
+    await numericCharactersSelection.accept();
+    let lowerCaseCharactersSelection = await driver.switchTo().alert();
+    await lowerCaseCharactersSelection.accept();
+    let upperCaseCharactersSelection = await driver.switchTo().alert();
+    await upperCaseCharactersSelection.accept();
+    let password = await driver
+      .findElement(By.id('password'))
+      .getAttribute('value');
+    console.log('password: ', password);
+    expect(password).to.match(onlyLettersAndNumeric);
+    await driver.quit();
+  });
+});
+
+describe('Only Lower Case Letter characters selected to generate password', function () {
+  var onlyLowerCaseLetters = /^[a-z]+$/;
+
+  it('Should generate a password with only lower case letter characters', async function () {
+    let driver = await new Builder().forBrowser('chrome').build();
+    await driver.get('http://127.0.0.1:5500/index.html');
+    await driver.findElement(By.id('generate')).click();
+    await driver.wait(until.alertIsPresent());
+    let alert = await driver.switchTo().alert();
+    await alert.sendKeys('10');
+    await alert.accept();
+    let specialCharactersSelection = await driver.switchTo().alert();
+    await specialCharactersSelection.dismiss();
+    let numericCharactersSelection = await driver.switchTo().alert();
+    await numericCharactersSelection.dismiss();
+    let lowerCaseCharactersSelection = await driver.switchTo().alert();
+    await lowerCaseCharactersSelection.accept();
+    let upperCaseCharactersSelection = await driver.switchTo().alert();
+    await upperCaseCharactersSelection.dismiss();
+    let password = await driver
+      .findElement(By.id('password'))
+      .getAttribute('value');
+    console.log('password: ', password);
+    expect(password).to.match(onlyLowerCaseLetters);
+    await driver.quit();
+  });
+});
+
+describe('Only Upper Case Letter characters selected to generate password', function () {
+  var onlyUpperCaseLetters = /^[A-Z]+$/;
+
+  it('Should generate a password with only lower case letter characters', async function () {
+    let driver = await new Builder().forBrowser('chrome').build();
+    await driver.get('http://127.0.0.1:5500/index.html');
+    await driver.findElement(By.id('generate')).click();
+    await driver.wait(until.alertIsPresent());
+    let alert = await driver.switchTo().alert();
+    await alert.sendKeys('10');
+    await alert.accept();
+    let specialCharactersSelection = await driver.switchTo().alert();
+    await specialCharactersSelection.dismiss();
+    let numericCharactersSelection = await driver.switchTo().alert();
+    await numericCharactersSelection.dismiss();
+    let lowerCaseCharactersSelection = await driver.switchTo().alert();
+    await lowerCaseCharactersSelection.dismiss();
+    let upperCaseCharactersSelection = await driver.switchTo().alert();
+    await upperCaseCharactersSelection.accept();
+    let password = await driver
+      .findElement(By.id('password'))
+      .getAttribute('value');
+    console.log('password: ', password);
+    expect(password).to.match(onlyUpperCaseLetters);
+    await driver.quit();
+  });
+});
+
+describe('Only Special Case characters selected to generate password', function () {
+  // note range selector placed at the end
+  var onlySpecialCaseCharacters = /^[!@#%^$£&+={}\.-]+$/;
+
+  it('Should generate a password with only special case letter characters', async function () {
+    let driver = await new Builder().forBrowser('chrome').build();
+    await driver.get('http://127.0.0.1:5500/index.html');
+    await driver.findElement(By.id('generate')).click();
+    await driver.wait(until.alertIsPresent());
+    let alert = await driver.switchTo().alert();
+    await alert.sendKeys('10');
+    await alert.accept();
+    let specialCharactersSelection = await driver.switchTo().alert();
+    await specialCharactersSelection.accept();
+    let numericCharactersSelection = await driver.switchTo().alert();
+    await numericCharactersSelection.dismiss();
+    let lowerCaseCharactersSelection = await driver.switchTo().alert();
+    await lowerCaseCharactersSelection.dismiss();
+    let upperCaseCharactersSelection = await driver.switchTo().alert();
+    await upperCaseCharactersSelection.dismiss();
+    let password = await driver
+      .findElement(By.id('password'))
+      .getAttribute('value');
+    console.log('password: ', password);
+    expect(password).to.match(onlySpecialCaseCharacters);
+    await driver.quit();
+  });
+});
+
+describe('All Character Types selected to generate password', function () {
+  // note range selector placed at the end
+  var anyCharacterType = /^[A-Za-z0-9!@#%^$£&+={}\.-]+$/;
+
+  it('Should generate a password with any character type', async function () {
+    let driver = await new Builder().forBrowser('chrome').build();
+    await driver.get('http://127.0.0.1:5500/index.html');
+    await driver.findElement(By.id('generate')).click();
+    await driver.wait(until.alertIsPresent());
+    let alert = await driver.switchTo().alert();
+    await alert.sendKeys('10');
+    await alert.accept();
+    let specialCharactersSelection = await driver.switchTo().alert();
+    await specialCharactersSelection.accept();
+    let numericCharactersSelection = await driver.switchTo().alert();
+    await numericCharactersSelection.accept();
+    let lowerCaseCharactersSelection = await driver.switchTo().alert();
+    await lowerCaseCharactersSelection.accept();
+    let upperCaseCharactersSelection = await driver.switchTo().alert();
+    await upperCaseCharactersSelection.accept();
+    let password = await driver
+      .findElement(By.id('password'))
+      .getAttribute('value');
+    console.log('password: ', password);
+    expect(password).to.match(anyCharacterType);
+    await driver.quit();
+  });
+});
+
+describe('No Character Type selected to generate password', function () {
+  it('Should prompt a message with no character type being selected', async function () {
+    let driver = await new Builder().forBrowser('chrome').build();
+    await driver.get('http://127.0.0.1:5500/index.html');
+    await driver.findElement(By.id('generate')).click();
+    await driver.wait(until.alertIsPresent());
+    let alert = await driver.switchTo().alert();
+    await alert.sendKeys('10');
+    await alert.accept();
+    let specialCharactersSelection = await driver.switchTo().alert();
+    await specialCharactersSelection.dismiss();
+    let numericCharactersSelection = await driver.switchTo().alert();
+    await numericCharactersSelection.dismiss();
+    let lowerCaseCharactersSelection = await driver.switchTo().alert();
+    await lowerCaseCharactersSelection.dismiss();
+    let upperCaseCharactersSelection = await driver.switchTo().alert();
+    await upperCaseCharactersSelection.dismiss();
+    let errorAlert = await driver.switchTo().alert();
+    let alertText = await errorAlert.getText();
+
+    // assert using chai should
+    alertText.should.equal(
+      'At least one character types needs to be selected.'
+    );
+
     await driver.quit();
   });
 });
