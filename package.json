@@ -4,7 +4,7 @@
   "description": "> Password Generator\r > Live demo [_here_](https://moedaaboul.github.io/Password-Generator/).",
   "main": "script.js",
   "scripts": {
-    "test": "mocha --no-timeouts 'tests/*.js'"
+    "test": "mocha --no-timeouts 'tests/*.js' --force-exit"
   },
   "repository": {
     "type": "git",
