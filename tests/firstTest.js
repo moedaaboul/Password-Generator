@@ -1,9 +1,26 @@
+const express = require('express');
+const path = require('path');
+
+const PORT = process.env.PORT || 3000;
+
+const app = express();
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(express.static(path.join(__dirname, '..')));
+
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, '../index.html'));
+});
+
+app.listen(PORT, console.log(`Server is listening on port ${PORT}....`));
+
 require('chromedriver');
 const { By, Builder, until, Capabilities } = require('selenium-webdriver');
 const { expect } = require('chai');
 var should = require('chai').should();
 // describe block
-const myUrl = 'https://moedaaboul.github.io/password-generator/';
+const myUrl = 'http://localhost:3000/';
 
 let chromeCapabilities = Capabilities.chrome();
 
