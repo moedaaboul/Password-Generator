@@ -1,17 +1,28 @@
 require('chromedriver');
-const { By, Builder, until } = require('selenium-webdriver');
+const { By, Builder, until, Capabilities } = require('selenium-webdriver');
 // const assert = require('assert');
 const { expect } = require('chai');
 var should = require('chai').should();
 // describe block
+const myUrl = 'https://moedaaboul.github.io/password-generator/';
+
+let chromeCapabilities = Capabilities.chrome();
+
+//Setting chrome options
+chromeCapabilities.set('goog:chromeOptions', {
+  args: ['--headless', '--disable-gpu', '--disable-dev-shm-usage'],
+});
 
 describe('Non-numeric inputs entered for number of password characters.', function () {
   // it block
   it('Should be rejected', async function () {
-    let driver = await new Builder().forBrowser('chrome').build();
+    let driver = await new Builder()
+      .forBrowser('chrome')
+      .withCapabilities(chromeCapabilities)
+      .build();
 
     // navigate to the application
-    await driver.get('http://127.0.0.1:5500/index.html');
+    await driver.get(myUrl);
 
     // click on generate password btn
     await driver.findElement(By.id('generate')).click();
@@ -53,8 +64,11 @@ describe('Non-numeric inputs entered for number of password characters.', functi
 describe('Less than 8 password characters have been entered', function () {
   // it block
   it('Should prompt with a password is too short message', async function () {
-    let driver = await new Builder().forBrowser('chrome').build();
-    await driver.get('http://127.0.0.1:5500/index.html');
+    let driver = await new Builder()
+      .forBrowser('chrome')
+      .withCapabilities(chromeCapabilities)
+      .build();
+    await driver.get(myUrl);
     await driver.findElement(By.id('generate')).click();
     await driver.wait(until.alertIsPresent());
     let alert = await driver.switchTo().alert();
@@ -74,8 +88,11 @@ describe('Less than 8 password characters have been entered', function () {
 describe('More than 128 password characters have been entered', function () {
   // it block
   it('Should prompt with a password is too short message', async function () {
-    let driver = await new Builder().forBrowser('chrome').build();
-    await driver.get('http://127.0.0.1:5500/index.html');
+    let driver = await new Builder()
+      .forBrowser('chrome')
+      .withCapabilities(chromeCapabilities)
+      .build();
+    await driver.get(myUrl);
     await driver.findElement(By.id('generate')).click();
     await driver.wait(until.alertIsPresent());
     let alert = await driver.switchTo().alert();
@@ -94,8 +111,11 @@ describe('Numeric characters only selected to generate password', function () {
   var onlyNumbers = /^[0-9]+$/;
 
   it('Should generate a password with only numeric characters', async function () {
-    let driver = await new Builder().forBrowser('chrome').build();
-    await driver.get('http://127.0.0.1:5500/index.html');
+    let driver = await new Builder()
+      .forBrowser('chrome')
+      .withCapabilities(chromeCapabilities)
+      .build();
+    await driver.get(myUrl);
     await driver.findElement(By.id('generate')).click();
     await driver.wait(until.alertIsPresent());
     let alert = await driver.switchTo().alert();
@@ -125,8 +145,11 @@ describe('Only Letter characters selected to generate password', function () {
   var onlyLetters = /^[A-Za-z]+$/;
 
   it('Should generate a password with only letter characters', async function () {
-    let driver = await new Builder().forBrowser('chrome').build();
-    await driver.get('http://127.0.0.1:5500/index.html');
+    let driver = await new Builder()
+      .forBrowser('chrome')
+      .withCapabilities(chromeCapabilities)
+      .build();
+    await driver.get(myUrl);
     await driver.findElement(By.id('generate')).click();
     await driver.wait(until.alertIsPresent());
     let alert = await driver.switchTo().alert();
@@ -155,8 +178,11 @@ describe('Only Mix of Letters and Numeric characters selected to generate passwo
   var onlyLettersAndNumeric = /^[A-Za-z0-9]+$/;
 
   it('Should generate a password with only letters and numeric characters', async function () {
-    let driver = await new Builder().forBrowser('chrome').build();
-    await driver.get('http://127.0.0.1:5500/index.html');
+    let driver = await new Builder()
+      .forBrowser('chrome')
+      .withCapabilities(chromeCapabilities)
+      .build();
+    await driver.get(myUrl);
     await driver.findElement(By.id('generate')).click();
     await driver.wait(until.alertIsPresent());
     let alert = await driver.switchTo().alert();
@@ -183,8 +209,11 @@ describe('Only Lower Case Letter characters selected to generate password', func
   var onlyLowerCaseLetters = /^[a-z]+$/;
 
   it('Should generate a password with only lower case letter characters', async function () {
-    let driver = await new Builder().forBrowser('chrome').build();
-    await driver.get('http://127.0.0.1:5500/index.html');
+    let driver = await new Builder()
+      .forBrowser('chrome')
+      .withCapabilities(chromeCapabilities)
+      .build();
+    await driver.get(myUrl);
     await driver.findElement(By.id('generate')).click();
     await driver.wait(until.alertIsPresent());
     let alert = await driver.switchTo().alert();
@@ -211,8 +240,11 @@ describe('Only Upper Case Letter characters selected to generate password', func
   var onlyUpperCaseLetters = /^[A-Z]+$/;
 
   it('Should generate a password with only lower case letter characters', async function () {
-    let driver = await new Builder().forBrowser('chrome').build();
-    await driver.get('http://127.0.0.1:5500/index.html');
+    let driver = await new Builder()
+      .forBrowser('chrome')
+      .withCapabilities(chromeCapabilities)
+      .build();
+    await driver.get(myUrl);
     await driver.findElement(By.id('generate')).click();
     await driver.wait(until.alertIsPresent());
     let alert = await driver.switchTo().alert();
@@ -240,8 +272,11 @@ describe('Only Special Case characters selected to generate password', function 
   var onlySpecialCaseCharacters = /^[!@#%^$£&+={}\.-]+$/;
 
   it('Should generate a password with only special case letter characters', async function () {
-    let driver = await new Builder().forBrowser('chrome').build();
-    await driver.get('http://127.0.0.1:5500/index.html');
+    let driver = await new Builder()
+      .forBrowser('chrome')
+      .withCapabilities(chromeCapabilities)
+      .build();
+    await driver.get(myUrl);
     await driver.findElement(By.id('generate')).click();
     await driver.wait(until.alertIsPresent());
     let alert = await driver.switchTo().alert();
@@ -269,8 +304,11 @@ describe('All Character Types selected to generate password', function () {
   var anyCharacterType = /^[A-Za-z0-9!@#%^$£&+={}\.-]+$/;
 
   it('Should generate a password with any character type', async function () {
-    let driver = await new Builder().forBrowser('chrome').build();
-    await driver.get('http://127.0.0.1:5500/index.html');
+    let driver = await new Builder()
+      .forBrowser('chrome')
+      .withCapabilities(chromeCapabilities)
+      .build();
+    await driver.get(myUrl);
     await driver.findElement(By.id('generate')).click();
     await driver.wait(until.alertIsPresent());
     let alert = await driver.switchTo().alert();
@@ -295,8 +333,11 @@ describe('All Character Types selected to generate password', function () {
 
 describe('No Character Type selected to generate password', function () {
   it('Should prompt a message with no character type being selected', async function () {
-    let driver = await new Builder().forBrowser('chrome').build();
-    await driver.get('http://127.0.0.1:5500/index.html');
+    let driver = await new Builder()
+      .forBrowser('chrome')
+      .withCapabilities(chromeCapabilities)
+      .build();
+    await driver.get(myUrl);
     await driver.findElement(By.id('generate')).click();
     await driver.wait(until.alertIsPresent());
     let alert = await driver.switchTo().alert();
