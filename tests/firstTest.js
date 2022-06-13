@@ -376,5 +376,6 @@ describe('No Character Type selected to generate password', function () {
     );
 
     await driver.quit();
+    process.exit(1);
   });
 });
