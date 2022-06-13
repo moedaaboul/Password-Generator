@@ -12,17 +12,22 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [16.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-
     steps:
+      # First you need to install a chromium browser in your runner
+      - name: Setup Chrome
+        # You may pin to the exact commit or the version.
+        # uses: browser-actions/setup-chrome@4fa655aad48f56911cad16db9252399a9e592848
+        uses: browser-actions/setup-chrome@v0.0.0
+        with:
+          # The Chromium version to install and use.
+          chromium-version: # optional
+      # You fetch the current ref
       - uses: actions/checkout@v2
-      - name: Use Node.js ${{ matrix.node-version }}
+
+      # Use Node version above 14.x you want to use
+      - name: Use Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: ${{ matrix.node-version }}
-          cache: 'npm'
+          node-version: 16.x
       - run: npm ci
       - run: npm test
