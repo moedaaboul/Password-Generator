@@ -48,3 +48,43 @@ describe('Non-numeric inputs entered for number of password characters.', functi
     console.log(alertText);
   });
 });
+
+describe('Less than 8 password characters have been entered', function () {
+  // it block
+  it('Should prompt with a password is too short message', async function () {
+    let driver = await new Builder().forBrowser('chrome').build();
+    await driver.get('http://127.0.0.1:5500/index.html');
+    await driver.findElement(By.id('generate')).click();
+    await driver.wait(until.alertIsPresent());
+    let alert = await driver.switchTo().alert();
+    await alert.sendKeys('7');
+    await alert.accept();
+    let errorAlert = await driver.switchTo().alert();
+    let alertText = await errorAlert.getText();
+
+    // assert using chai should
+    alertText.should.equal('Password is too short.');
+
+    //close the browser
+    await driver.quit();
+  });
+});
+
+describe('More than 128 password characters have been entered', function () {
+  // it block
+  it('Should prompt with a password is too short message', async function () {
+    let driver = await new Builder().forBrowser('chrome').build();
+    await driver.get('http://127.0.0.1:5500/index.html');
+    await driver.findElement(By.id('generate')).click();
+    await driver.wait(until.alertIsPresent());
+    let alert = await driver.switchTo().alert();
+    await alert.sendKeys('129');
+    await alert.accept();
+    let errorAlert = await driver.switchTo().alert();
+    let alertText = await errorAlert.getText();
+
+    // assert using chai should
+    alertText.should.equal('Password is too long!');
+    await driver.quit();
+  });
+});
