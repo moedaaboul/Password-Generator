@@ -354,9 +354,7 @@ describe('No Character Type selected to generate password', function () {
     let alertText = await errorAlert.getText();
 
     // assert using chai should
-    alertText.should.equal(
-      'At least one character types needs to be selected.'
-    );
+    alertText.should.equal('At least one character types needs to be select.');
 
     await driver.quit();
   });
