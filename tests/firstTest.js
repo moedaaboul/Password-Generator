@@ -349,36 +349,32 @@ describe('All Character Types selected to generate password', function () {
 
 describe('No Character Type selected to generate password', function () {
   it('Should prompt a message with no character type being selected', async function () {
-    try {
-      let driver = await new Builder()
-        .forBrowser('chrome')
-        .withCapabilities(chromeCapabilities)
-        .build();
-      await driver.get(myUrl);
-      await driver.findElement(By.id('generate')).click();
-      await driver.wait(until.alertIsPresent());
-      let alert = await driver.switchTo().alert();
-      await alert.sendKeys('10');
-      await alert.accept();
-      let specialCharactersSelection = await driver.switchTo().alert();
-      await specialCharactersSelection.dismiss();
-      let numericCharactersSelection = await driver.switchTo().alert();
-      await numericCharactersSelection.dismiss();
-      let lowerCaseCharactersSelection = await driver.switchTo().alert();
-      await lowerCaseCharactersSelection.dismiss();
-      let upperCaseCharactersSelection = await driver.switchTo().alert();
-      await upperCaseCharactersSelection.dismiss();
-      let errorAlert = await driver.switchTo().alert();
-      let alertText = await errorAlert.getText();
+    let driver = await new Builder()
+      .forBrowser('chrome')
+      .withCapabilities(chromeCapabilities)
+      .build();
+    await driver.get(myUrl);
+    await driver.findElement(By.id('generate')).click();
+    await driver.wait(until.alertIsPresent());
+    let alert = await driver.switchTo().alert();
+    await alert.sendKeys('10');
+    await alert.accept();
+    let specialCharactersSelection = await driver.switchTo().alert();
+    await specialCharactersSelection.dismiss();
+    let numericCharactersSelection = await driver.switchTo().alert();
+    await numericCharactersSelection.dismiss();
+    let lowerCaseCharactersSelection = await driver.switchTo().alert();
+    await lowerCaseCharactersSelection.dismiss();
+    let upperCaseCharactersSelection = await driver.switchTo().alert();
+    await upperCaseCharactersSelection.dismiss();
+    let errorAlert = await driver.switchTo().alert();
+    let alertText = await errorAlert.getText();
 
-      // assert using chai should
-      alertText.should.equal(
-        'At least one character types needs to be selected.'
-      );
+    // assert using chai should
+    alertText.should.equal(
+      'At least one character types needs to be selected.'
+    );
 
-      await driver.quit();
-    } finally {
-      process.exit(1);
-    }
+    await driver.quit();
   });
 });
